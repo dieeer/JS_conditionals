@@ -16,6 +16,14 @@ function App() {
     console.log(e.target.value)
   }
 
+  const purchaseItem = (index) => {
+    const copyItems = [...items]
+    const updatedItem = {...copyItems[index]}
+    updatedItem.isPurchased = true
+    copyItems[index] = updatedItem
+    setItems(copyItems)
+  }
+
   const addNewItemToList = (e) => {
     e.preventDefault()
     console.log('submit has happened')
@@ -34,7 +42,7 @@ function App() {
           {item.name}
         </span>
         {/* <span>{item.isPurchased.toString()}</span> */}
-        {item.isPurchased ? <span>🛒</span> : <button>add to basket</button>}
+        {item.isPurchased ? <span>🛒</span> : <button onClick={() => purchaseItem(index)}> ➕ 🛒</button>}
       </li>
     )
   })
